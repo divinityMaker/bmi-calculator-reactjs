@@ -1,5 +1,5 @@
 export interface LevelsTypes {
-    tittle: string;
+    title: string;
     color: string;
     icon: 'up' | 'down';
     bmi: number[];
@@ -7,10 +7,10 @@ export interface LevelsTypes {
 }
 
 export const levels: LevelsTypes[] = [
-    { tittle: 'Magreza', color: '#96A3AB', icon: 'down', bmi: [0, 18.5] },
-    { tittle: 'Normal', color: '#0EAD69', icon: 'up', bmi: [18.6, 24.9] },
-    { tittle: 'Sobrepeso', color: '#E2B036', icon: 'down', bmi: [25, 30] },
-    { tittle: 'Obesidade', color: '#C3423F', icon: 'down', bmi: [31.1, 99] }
+    { title: 'Magreza', color: '#96A3AB', icon: 'down', bmi: [0, 18.5] },
+    { title: 'Normal', color: '#0EAD69', icon: 'up', bmi: [18.6, 24.9] },
+    { title: 'Sobrepeso', color: '#E2B036', icon: 'down', bmi: [25, 30] },
+    { title: 'Obesidade', color: '#C3423F', icon: 'down', bmi: [31.1, 99] }
 ]
 
 export const calculateBmi = (height: number, weight: number): LevelsTypes | null => {

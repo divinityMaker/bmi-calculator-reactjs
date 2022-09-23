@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import styles from "./app.module.css";
 import logoImage from "./assets/powered.png";
+import GridItem from "./components/GridItem";
 
 import { levels, calculateBmi } from "./utils/bmi";
 
@@ -45,7 +46,13 @@ const App: React.FC = () => {
 
           <button onClick={handleCalculateButton}>Calcular</button>
         </div>
-        <div className={styles.rightSide}></div>
+        <div className={styles.rightSide}>
+          <div className={styles.grid}>
+              {levels.map((item, index) => {
+                return <GridItem key={index} data={item} />
+              })}
+          </div>
+        </div>
       </div>
     </>
   );
