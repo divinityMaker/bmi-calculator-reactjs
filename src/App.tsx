@@ -27,7 +27,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <>
+    <div className={styles.main}>
       <header>
         <div className={styles.headerContainer}>
           <img src={logoImage} alt="" width={150} />
@@ -76,7 +76,7 @@ const App: React.FC = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
