@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import styles from "./app.module.css";
 import logoImage from "./assets/powered.png";
 
+import { levels, calculateBmi } from "./utils/bmi";
+
 const App: React.FC = () => {
   const [heightField, setHeightField] = useState<number>(0);
   const [weightField, setWeightField] = useState<number>(0);
