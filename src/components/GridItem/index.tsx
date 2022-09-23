@@ -16,6 +16,11 @@ const GridItem: React.FC<Props> = ({ data }) => {
         <img src={data.icon === "up" ? upImage : downImage} alt="" width={30} />
       </div>
       <div className={styles.gridTitle}>{data.title}</div>
+
+        {data.yourBmi &&
+            <div className={styles.yourBmi}>Seu IMC é de {data.yourBmi} kg/m²</div>
+        }
+
       <div className={styles.gridInfo}>
         <>
             IMC está entre <strong>{data.bmi[0]}</strong> e <strong>{data.bmi[1]}</strong>.

@@ -2,18 +2,28 @@ import React, { useState } from "react";
 
 import styles from "./app.module.css";
 import logoImage from "./assets/powered.png";
+import leftArrow from "./assets/leftarrow.png";
+
 import GridItem from "./components/GridItem";
 
-import { levels, calculateBmi } from "./utils/bmi";
+import { levels, calculateBmi, LevelsTypes } from "./utils/bmi";
 
 const App: React.FC = () => {
   const [heightField, setHeightField] = useState<number>(0);
   const [weightField, setWeightField] = useState<number>(0);
+  const [toShow, setToShow] = useState<LevelsTypes | null>(null);
 
   const handleCalculateButton = () => {
     if (heightField && weightField) {
+      return setToShow(calculateBmi(heightField, weightField));
     }
     return alert("Preencha todos os campos");
+  };
+
+  const handleBackButton = (): void => {
+    setToShow(null);
+    setHeightField(0);
+    setWeightField(0);
   };
 
   return (
@@ -36,22 +46,34 @@ const App: React.FC = () => {
             type="number"
             value={heightField > 0 ? heightField : ""}
             onChange={(e) => setHeightField(parseFloat(e.target.value))}
+            disabled={toShow ? true : false}
           />
           <input
             placeholder="Digite o seu peso. Ex: 75.3 (em kg)"
             type="number"
             value={weightField > 0 ? weightField : ""}
             onChange={(e) => setWeightField(parseFloat(e.target.value))}
+            disabled={toShow ? true : false}
           />
 
-          <button onClick={handleCalculateButton}>Calcular</button>
+          <button onClick={handleCalculateButton} disabled={toShow ? true : false} >Calcular</button>
         </div>
         <div className={styles.rightSide}>
-          <div className={styles.grid}>
+          {!toShow && (
+            <div className={styles.grid}>
               {levels.map((item, index) => {
-                return <GridItem key={index} data={item} />
+                return <GridItem key={index} data={item} />;
               })}
-          </div>
+            </div>
+          )}
+          {toShow && (
+            <div className={styles.rightBig}>
+              <div className={styles.rightArrow} onClick={handleBackButton}>
+                <img src={leftArrow} alt="" width={25} />
+              </div>
+              <GridItem data={toShow} />
+            </div>
+          )}
         </div>
       </div>
     </>
